@@ -1,0 +1,359 @@
+<!-- Intro to HTML & CSS I
+
+  Module Project Overview
+
+    You will build a website to display the bio of your favorite programmer, artist, etc.
+
+    In order to do this, you will create an `index.html` file and scaffold the document
+    with the elements shared by all HTML documents:
+
+    - doctype declaration
+    - html element
+    - head, containing a title and an optional style tag
+    - body, containing the markup that renders to the screen
+
+  Requirements
+
+    Review this article: https://www.w3schools.com/html/html5_semantic_elements.asp
+
+    Create an `index.html` file for your site, or use this same file.
+
+    For your site, you will make use of at least the following semantic elements:
+
+    - header (to contain the main heading of the site, and the nav)
+    - nav (to contain some links to navigate to the different sections of this document)
+    - section (each holding at least a heading and a paragraph)
+    - aside (containing an img and a caption)
+    - footer (containing a contact form)
+    - form (containing at least two inputs with their labels)
+
+    See an example of a finished site: https://bloominstituteoftechnology.github.io/img/anita-borg-bio-website.png
+
+    The example above is quite simple, but you can make your site as fancy as you'd like. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WLOP Artist Infosite</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #1E242B;
+            color: #849DB8;
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1080px;
+        }
+
+        /* colors */
+
+        input,
+        textarea {
+            background-color: #2D3640;
+            color: #9FE9FF;
+        }
+
+        h1 {
+            color: white;
+            font-variant: small-caps;
+            filter: drop-shadow(1px 0 10px black) drop-shadow(0 1px 10px black);
+        }
+
+        h2,
+        h3 {
+            color: lightgray;
+            font-variant: small-caps;
+        }
+
+        .artist-links {
+            color: skyblue;
+        }
+
+        #nav-text,
+        .nav-buttons {
+            color: lightgray;
+            filter: drop-shadow(0 0 5px black);
+        }
+
+        /* sizing & alignment */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+            max-height: 25vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header img {
+            position: relative;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        #header {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            align-content: center;
+        }
+
+        nav {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-height: 38%;
+            backdrop-filter: blur(5px);
+            padding-bottom: 5px;
+        }
+
+        #nav-text {
+            margin: 8px;
+        }
+
+        #nav-btn-div {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .nav-buttons {
+            padding: 5px;
+            border: 1px solid lightskyblue;
+            border-radius: 10px;
+        }
+
+        .works {
+            margin-left: 25px;
+        }
+
+        .works-content {
+            display: flex;
+        }
+
+        .works-content p {
+            font-size: large;
+            margin: 0;
+        }
+
+        aside {
+            min-width: 30%;
+            max-width: 30%;
+            max-height: max-content;
+            font-style: italic;
+            border: 1px solid lightgray;
+            align-self: flex-start;
+        }
+
+        aside img,
+        aside iframe {
+            max-width: 100%;
+        }
+
+        aside p {
+            margin-right: 8px;
+            font-size: medium !important;
+        }
+
+        form textarea {
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://cdnb.artstation.com/p/users/covers/000/047/207/default/97209d9c3394eb4cf950be75ffc38c56.jpg"
+            alt="banner">
+        <div id="header">
+            <h1>WLOP Artist Infosite</h1>
+            <nav>
+                <h3 id="nav-text">Navigation:</h3>
+                <div id="nav-btn-div">
+                    <a class="nav-buttons" href="#overview">Overview</a>
+                    <a class="nav-buttons" href="#works">Works</a>
+                    <a class="nav-buttons" href="#links">Artist links</a>
+                    <a class="nav-buttons" href="#contact">Contact the writer</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div id="buffer"></div>
+    <section id="overview">
+        <h2>Overview</h2>
+        <p>WLOP, real name Wang Ling (Chinese 王凌), is a Chinese artist who makes digital art for free on the internet.
+            Born June 5, 1987, he is known for his works in the fantasy genre, and tends to feature women as the focal
+            point of his digital paintings. He also has made a lot of painting-process videos, where he'll show his
+            process during a time lapsed video set to related music.
+        </p>
+        <p>He's a pretty private person, so not much is known of the artist behind the art, but his works tend to speak
+            for themselves. He's known for a dualistic style, where the foreground elements tend to be crisp and clear,
+            while the backgrounds can be almost watercolor-esque and blurry. However, he still manages to imply a lot of
+            detail where there is none.
+        </p>
+    </section>
+    <section id="works">
+        <h2>Works</h2>
+        <p>WLOP's works include illustrations, comics, and more recently he's even released some animated wallpapers.
+            His earliest posts the author of this site could find date back to Febuary of 2012, and he has since posted
+            hundreds of pieces of art. Most of his work is of his own original characters, but he <i>has</i> made some
+            fanart as well. Almost all of his original works are set in one of three worlds he's crafted, and tend to
+            follow a theme.
+        </p>
+        <div class="works">
+            <h3>Illustrations</h3>
+            <div class="works-content">
+                <p>As mentioned previously, WLOP tends to base his original art within one of three worlds; the world of
+                    Ghost Blade, of Cloud Insect, and of Dead Dreams. Ghost Blade is set in a fantasy world, and
+                    features royals, knights, elves, and many more fantastical creatures. Cloud Insect is set in a
+                    sci-fi world, often showing technological city-scapes and cyborgs. Dead Dreams seems to be a clash
+                    of magic and modern, where mythical creatures can be seen in amongst modern architecture.
+                </p>
+                <aside>
+                    <a href="https://www.artstation.com/artwork/RyqByy">
+                        <img src="https://cdna.artstation.com/p/assets/images/images/061/837/770/medium/wlop-4se.jpg"
+                            alt="WLOP illustration">
+                    </a>
+                    <p>A fantasy-themed artwork, set in the Ghost Blade universe. Depicting a dragon and a woman in a
+                        frozen scene.</p>
+                </aside>
+            </div>
+        </div>
+        <div class="works">
+            <h3>Comics</h3>
+            <div class="works-content">
+                <p>There are two comics that have been released by WLOP; the first is titled Ghost Blade (鬼刀), and the
+                    second is named Cloud Insect (雲蟲). Ghost Blade has been released both with the original Chinese, and
+                    a translation in English, and is still being released to this day. Cloud Insect has had a couple
+                    chapters released in Chinese, but no official English translation has been made. It has also been
+                    put on hiatus while the artist focuses on his first comic. There's a possibility a third comic will
+                    be eventually created, as there is a third world he has yet to have a story take place in, but
+                    nothing has been confirmed as of this writing.
+                </p>
+                <aside>
+                    <a href="https://tapas.io/series/GhostBlade">
+                        <img src="https://us-a.tapas.io/sa/65/69765b6b-3fd4-4a05-82cf-cc88d7a16f7d.jpg"
+                            alt="WLOP Ghost Blade comic image">
+                    </a>
+                    <p>An illustration from WLOP's first comic, Ghost Blade. Shows a Princess and her knights.</p>
+                </aside>
+            </div>
+        </div>
+        <div class="works">
+            <h3>Animated Wallpapers</h3>
+            <div class="works-content">
+                <p>WLOP started experimenting with combining 2D and 3D art in order to create animations back in April
+                    of 2019. He has since made quite a few animated wallpapers, oftentimes bringing a static artwork of
+                    his to life. There are a few pieces that he made exclusively animated, but they are in the minority.
+                    Almost all of these pieces of art can be found on his YouTube for free.
+                </p>
+                <aside>
+                    <iframe src="https://www.youtube.com/embed/_n6B_vyGXFk?mute=1" frameborder="0" allow="accelerometer"
+                        allowfullscreen></iframe>
+                    <p>This video showcases an animated wallpaper that WLOP created. It combines 2D and 3D animation</p>
+                </aside>
+            </div>
+        </div>
+        <div class="works">
+            <h3>Fanart</h3>
+            <div class="works-content">
+                <p>Although definitely in the minority, WLOP has been known to release fanart of characters from popular
+                    franchises. Sometimes this is because the character/franchise in question piques his interest, and
+                    sometimes it's commissioned work for one of his many fans. Either way, it's always very cool to see
+                    known and often beloved characters brought to life in his unique artstyle.
+                </p>
+                <aside>
+                    <a href="https://www.pixiv.net/en/artworks/69526240">
+                        <img src="https:\\i.redd.it\kjrd9mlcv1j41.jpg" alt="WLOP Legend of Zelda fanart">
+                    </a>
+                    <p>Here's an example of WLOP's fanart, this one of Zelda riding the motorbike in front of a Divine
+                        Beast</p>
+                </aside>
+            </div>
+        </div>
+    </section>
+    <section id="links">
+        <h2>Artist Links</h2>
+        <ul>
+            <li>
+                <a class="artist-links" href="https://linktr.ee/wlop">Linktree (more links)</a>
+            </li>
+            <li>
+                <a class="artist-links" href="https://www.artstation.com/wlop">Artstation</a>
+            </li>
+            <li>
+                <a class="artist-links" href="https://tapas.io/zydnq5010">Tapas</a>
+            </li>
+            <li>
+                <a class="artist-links" href="https://www.pixiv.net/en/users/2188232">Pixiv</a>
+            </li>
+        </ul>
+    </section>
+    <footer id="contact">
+        <h2>Contact the writer</h3>
+            <form action="">
+                <label for="name">Your name:</label>
+                <input type="text" id="name" name="name" placeholder="John Doe">
+                <br>
+
+                <label for="email">Your email:</label>
+                <input type="text" id="email" name="email" placeholder="example@gmail.com">
+                <input type="checkbox" id="response" name="response">
+                <label for="response">I would like a response</label>
+                <br>
+
+                <label for="message">Your message:</label>
+                <br>
+                <textarea name="message" id="message" cols="50" rows="5"></textarea>
+                <br>
+
+                <input type="submit" value="submit" style="margin-left: 75px;">
+            </form>
+    </footer>
+    <script>
+        // make sure banner doesn't cover content
+        let headerHeight
+        function resizeHeader() {
+            headerHeight = document.querySelector('header').offsetHeight;
+            document.body.style.paddingTop = headerHeight + 'px'
+        }
+        window.addEventListener('load', resizeHeader);
+        window.addEventListener('resize', resizeHeader);
+
+        // override default behavior of nav anchors to smoothly scroll to the right place
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                let targetOffsetTop = document.querySelector(this.getAttribute('href')).offsetTop;
+                window.scrollTo({
+                    top: targetOffsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

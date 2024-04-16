@@ -1,0 +1,21 @@
+name: User-specific Push Workflow
+on:
+  push:
+    branches:
+      - main  # Replace with your desired branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Add team as admin
+        if: github.event.pusher.username == 'github-classroom[bot]'
+        uses: octokit/request-action@v2.x
+        with:
+          route: PUT /repos/${{ github.repository }}/collaborators/teams/id-team
+          token: ${{ secrets.GITHUB_TOKEN }}
+          permissions: admin

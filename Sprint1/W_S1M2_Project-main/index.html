@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Program Flow</title>
+    <style>
+        #verse {
+            font-style: italic;
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Program Flow</h1>
+    <p>Please load this file in VSCode and Chrome, and open the Console in Chrome Dev Tools.</p>
+    <p>Work through the challenges found inside the last script tag in this document,
+        until the verse below reads correctly and the Console reports all tests passing.</p>
+    <p id="verse"></p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.js"></script>
+    <script>
+        // In CHALLENGEs 1-8 you will use conditional statements to assign values to the "result" variables below:
+        let result1, result2, result3, result4, result5, result6, result7, result8;
+
+        // To do this, translate each 🧠 pseudocode into a working conditional statement.
+        // ❗ Do not change the values of any of the variables declared below.
+        // ❗ Some pseudocodes have the conditions in the wrong order.
+        // ❗ You can create new variables if you need to.
+        // ❗ The first one is done for you:
+
+        // 👉 CHALLENGE 1
+        const num1 = 7;
+        const num2 = 10;
+        // 🧠 pseudocode: if num1 bigger than num2, then result1 is string "come", otherwise "go"
+        if (num1 > num2) {
+            result1 = 'come';
+        } else {
+            result1 = 'go';
+        }
+
+        // 👉 CHALLENGE 2
+        const age1 = 18;
+        const age2 = 25;
+        const age3 = 34;
+        // 🧠 pseudocode: if any of the ages is under 18, then result2 is string "this", otherwise "that"
+
+        // ✨ Your code here
+        if (age1 < 18 && age2 < 18 && age3 < 18) {
+            result2 = 'this';
+        } else {
+            result2 = 'that';
+        }
+
+        // 👉 CHALLENGE 3
+        const val1 = ' ';
+        const val2 = '';
+        const val3 = -1;
+        // 🧠 pseudocode: if all the vals are either truthy or the empty string, result3 is "Do", otherwise "Don't"
+
+        // ✨ Your code here
+        if ((val1 || val1 === '') && (val2 || val2 === '') && (val3 || val3 === '')) {
+            result3 = "Do";
+        } else {
+            result3 = "Don't";
+        }
+
+        // 👉 CHALLENGE 4
+        const data1 = NaN;
+        const data2 = null;
+        const data3 = ' ';
+        // 🧠 pseudocode: if any of the pieces of data above is truthy, then result4 is "good", otherwise "bad"
+
+        // ✨ Your code here
+        if (data1 || data2 || data3) {
+            result4 = "good";
+        } else {
+            result4 = "bad";
+        }
+
+        // 👉 CHALLENGE 5
+        const int1 = 32;
+        const int2 = 64;
+        const int3 = 128;
+        // 🧠 pseudocode: if any int greater than zero, then result5 is "harsh"; else if any int greater
+        // than 32, then "firm"; else if any int greater than 64, then "gentle"
+
+        // ✨ Your code here
+        if (int1 > 64 || int2 > 64 || int3 > 64) {
+            result5 = "gentle";
+        } else if (int1 > 32 || int2 > 32 || int3 > 32) {
+            result5 = "firm";
+        } else if (int1 > 0 || int2 > 0 || int3 > 0) {
+            result5 = "harsh";
+        }
+
+        // 👉 CHALLENGE 6
+        const amount1 = 4;
+        const amount2 = 8;
+        const amount3 = 13;
+        // 🧠 pseudocode: if two out of the three amounts are divisible by 4, then result6 is "not", otherwise "so"
+
+        // ✨ Your code here
+        // I challenged myself to make this scallable to any number of amounts
+        const arrAmt = [amount1, amount2, amount3];
+        result6 = "so";
+        for (const amt of arrAmt) {
+            if (!(amt % 4)) {
+                for (const compare of arrAmt) {
+                    if (amt !== compare && !(compare % 4)) {
+                        result6 = "not";
+                        break;
+                    }
+                }
+            }
+            if (result6 === "not") {
+                break
+            }
+        }
+
+        // 👉 CHALLENGE 7
+        const friend1 = undefined;
+        const friend2 = 'undefined';
+        const friend3 = 'Peter';
+        // 🧠 pseudocode: if all friends are falsy, then result7 is "day"; else if no friends are falsy, then "twilight", else "night"
+
+        // ✨ Your code here
+        if (!friend1 && !friend2 && !friend3) {
+            result7 = "day";
+        } else if (friend1 && friend2 && friend3) {
+            result7 = "twilight";
+        } else {
+            result7 = "night";
+        }
+
+        // 👉 CHALLENGE 8
+        const monday = 0;
+        const tuesday = 1;
+        const wednesday = 2;
+        const thursday = 3;
+        const friday = 4;
+        const saturday = 5;
+        const sunday = 6;
+        const TODAY = wednesday;
+        // 🧠 pseudocode: if TODAY plus 657385 days is a
+        // - Monday, then result8 is "in"
+        // - Tuesday, then "at"
+        // - Wednesday, then "on"
+        // - Thursday, then "into"
+        // - Friday, then "from"
+        // - Saturday, then "within"
+        // - Sunday, then "beneath"
+
+        // ✨ Your code here
+        const newDay = TODAY + 657385;
+        const weekDay = newDay % 7;
+        result8 = ["in", "at", "on", "into", "from", "within", "beneath"][weekDay];
+
+        // Tests. Do not make any changes below this line!
+        const total = `${result3} ${result6} ${result1} ${result5} ${result8} ${result2} ${result4} ${result7}`;
+        verse.textContent = total;
+
+        const res = '[TEST] result';
+        const good = 'looks good ✅';
+        const bad = 'is incorrect ❌';
+        console.log(md5(result1) === '34d1f91fb2e514b8576fab1a75a89a6b' ? `${res}1 ${good}` : `${res}1 ${bad}`);
+        console.log(md5(result2) === '21582c6c30be1217322cdb9aebaf4a59' ? `${res}2 ${good}` : `${res}2 ${bad}`);
+        console.log(md5(result3) === '0567953871b1bf589b797d9b178d5a94' ? `${res}3 ${good}` : `${res}3 ${bad}`);
+        console.log(md5(result4) === '755f85c2723bb39381c7379a604160d8' ? `${res}4 ${good}` : `${res}4 ${bad}`);
+        console.log(md5(result5) === 'a35b6ec571ce2ed20f7d3442987efb07' ? `${res}5 ${good}` : `${res}5 ${bad}`);
+        console.log(md5(result6) === 'd529e941509eb9e9b9cfaeae1fe7ca23' ? `${res}6 ${good}` : `${res}6 ${bad}`);
+        console.log(md5(result7) === '93a04b066fd81a1017825f2dcda313b2' ? `${res}7 ${good}` : `${res}7 ${bad}`);
+        console.log(md5(result8) === 'b971be0e2e7176b90d5501eca32a0226' ? `${res}8 ${good}` : `${res}8 ${bad}`);
+    </script>
+</body>
+
+</html>
