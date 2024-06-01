@@ -29,16 +29,21 @@ export default function App() {
 
     const addToSavedList = id => {
         // This is stretch. Prevent the same movie from being "saved" more than once
+        // eslint-disable-next-line eqeqeq
+        const addMovie = movies.find(mv => mv.id == id)
+        if (!saved.includes(addMovie)) {
+            setSaved([...saved, addMovie])
+        }
     }
 
     return (
         <div>
-            <SavedList list={[ /* This is stretch */]} />
+            <SavedList list={saved} />
 
             {/* <div>Replace this Div with your Routes</div> */}
             <Routes>
                 <Route path="/" element={<MovieList movies={movies} />} />
-                <Route path="movies/:id" element={<Movie />} />
+                <Route path="movies/:id" element={<Movie addToSavedList={addToSavedList} />} />
             </Routes>
         </div>
     )
