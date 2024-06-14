@@ -2,6 +2,10 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import App from './App'
+import langData from '../i18n/index.json'
+
+const clear = require('console-clear')
+clear()
 
 describe('Module 4 Project Tests', () => {
     describe('English Language', () => {
@@ -10,9 +14,43 @@ describe('Module 4 Project Tests', () => {
     
           One test is done for you as an example.
         */
-        test(`TEXT_HEADING_CREATE_ACCOUNT is visible`, () => {
+        //    test(`TEXT_HEADING_CREATE_ACCOUNT is visible`, () => {
+        //        render(<App lang="en" />)
+        //        expect(screen.getByText(enData.TEXT_HEADING_CREATE_ACCOUNT)).toBeVisible()
+        //     })
+        const enData = langData.en;
+        // getByText
+        [
+            'TEXT_HEADING_CREATE_ACCOUNT',
+            'TEXT_FAV_LANG',
+            'TEXT_OPT_FAV_FOOD_1',
+            'TEXT_OPT_FAV_FOOD_2',
+            'TEXT_OPT_FAV_FOOD_3',
+            'TEXT_OPT_FAV_FOOD_4',
+            'TEXT_SUBMIT'
+        ].forEach(key => {
+            test(`${key} is visible`, () => {
+                render(<App lang="en" />)
+                expect(screen.getByText(enData[key])).toBeVisible()
+            })
+        });
+        // getByLabelText
+        [
+            'LABEL_USERNAME',
+            'TEXT_FAV_LANG_JS',
+            'TEXT_FAV_LANG_RUST',
+            'LABEL_FAV_FOOD',
+            'LABEL_ACCEPT_TERMS'
+        ].forEach(key => {
+            test(`${key} is visible`, () => {
+                render(<App lang="en" />)
+                expect(screen.getByLabelText(enData[key])).toBeVisible()
+            })
+        })
+        // getByPlaceholderText
+        test('PLACEHOLDER_USERNAME is visible', () => {
             render(<App lang="en" />)
-            expect(screen.getByText("Create an Account")).toBeVisible()
+            expect(screen.getByPlaceholderText(enData['PLACEHOLDER_USERNAME'])).toBeVisible()
         })
     })
     describe('Spanish Language', () => {
@@ -21,6 +59,40 @@ describe('Module 4 Project Tests', () => {
     
           This is done after making the UI multilingual.
         */
+        const espData = langData.esp;
+        // getByText
+        [
+            'TEXT_HEADING_CREATE_ACCOUNT',
+            'TEXT_FAV_LANG',
+            'TEXT_OPT_FAV_FOOD_1',
+            'TEXT_OPT_FAV_FOOD_2',
+            'TEXT_OPT_FAV_FOOD_3',
+            'TEXT_OPT_FAV_FOOD_4',
+            'TEXT_SUBMIT'
+        ].forEach(key => {
+            test(`${key} is visible`, () => {
+                render(<App lang="esp" />)
+                expect(screen.getByText(espData[key])).toBeVisible()
+            })
+        });
+        // getByLabelText
+        [
+            'LABEL_USERNAME',
+            'TEXT_FAV_LANG_JS',
+            'TEXT_FAV_LANG_RUST',
+            'LABEL_FAV_FOOD',
+            'LABEL_ACCEPT_TERMS'
+        ].forEach(key => {
+            test(`${key} is visible`, () => {
+                render(<App lang="esp" />)
+                expect(screen.getByLabelText(espData[key])).toBeVisible()
+            })
+        })
+        // getByPlaceholderText
+        test('PLACEHOLDER_USERNAME is visible', () => {
+            render(<App lang="esp" />)
+            expect(screen.getByPlaceholderText(espData.PLACEHOLDER_USERNAME)).toBeVisible()
+        })
     })
     describe('getEntriesByKeyPrefix', () => {
         test('can extract the correct data', () => {
@@ -35,6 +107,21 @@ describe('Module 4 Project Tests', () => {
               the tests are written _before_ implementing
               the function being tested.
             */
+            const test_data = {
+                abc_1: "data_abc_1",
+                abc_2: "data_abc_2",
+                xyz_1: "data_xyz_1",
+                abc_3: "data_abc_3"
+            }
+            expect(getEntriesByKeyPrefix(test_data, 'abc')).toEqual([
+                ["abc_1", "data_abc_1"],
+                ["abc_2", "data_abc_2"],
+                ["abc_3", "data_abc_3"]
+            ])
+            expect(getEntriesByKeyPrefix(test_data, 'xyz')).toEqual([
+                ["xyz_1", "data_xyz_1"]
+            ])
+            expect(getEntriesByKeyPrefix(test_data, 'nul')).toEqual([])
         })
     })
 })
@@ -74,4 +161,10 @@ function getEntriesByKeyPrefix(obj, keyPrefix) {
       The properties that match the `keyPrefix` are returned inside an array holding key-value-pair sub-arrays.
   
     */
+    const regex = new RegExp(`^${keyPrefix}_.*$`)
+    let arr = []
+    for (let key in obj) {
+        if (key.match(regex)) arr.push([key, obj[key]])
+    }
+    return arr
 }
