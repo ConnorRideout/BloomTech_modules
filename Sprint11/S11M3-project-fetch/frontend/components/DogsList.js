@@ -13,6 +13,7 @@ export default function DogsList() {
     useEffect(() => { updateDogsList() }, [])
     const navigate = useNavigate()
 
+    // event handlers
     const onClickEdit = dog => {
         setDogToEdit(dog)
         navigate('/form')
@@ -23,6 +24,7 @@ export default function DogsList() {
                 if (!res.ok) {
                     throw new Error(`HTTP status ${res.status}`)
                 }
+                setDogToEdit(null)
                 updateDogsList()
             })
             .catch(err => `Something went wrong DELETEing dog: ${err}`)
