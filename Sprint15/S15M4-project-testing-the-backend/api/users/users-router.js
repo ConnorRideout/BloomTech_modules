@@ -33,6 +33,7 @@ router.get('/users', (req, res, next) => {
         .then(users => {
             res.status(200).json(users)
         })
+        .catch(next)
 })
 
 module.exports = router
